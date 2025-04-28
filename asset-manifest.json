@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/gened1188/static/css/main.5e233858.css",
-    "main.js": "/gened1188/static/js/main.81708ed0.js",
+    "main.js": "/gened1188/static/js/main.7918cf3e.js",
     "index.html": "/gened1188/index.html",
     "main.5e233858.css.map": "/gened1188/static/css/main.5e233858.css.map",
-    "main.81708ed0.js.map": "/gened1188/static/js/main.81708ed0.js.map"
+    "main.7918cf3e.js.map": "/gened1188/static/js/main.7918cf3e.js.map"
   },
   "entrypoints": [
     "static/css/main.5e233858.css",
-    "static/js/main.81708ed0.js"
+    "static/js/main.7918cf3e.js"
   ]
 }
