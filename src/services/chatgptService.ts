@@ -1,5 +1,8 @@
 import { ApartmentListing, SearchParams } from './api';
 
+// Set your Render API base URL here
+const API_BASE_URL = 'https://gened1188.onrender.com';
+
 export async function getChatGPTRecommendations(
   apartments: ApartmentListing[],
   searchParams: SearchParams
@@ -10,7 +13,7 @@ export async function getChatGPTRecommendations(
       searchParams
     });
 
-    const response = await fetch('http://localhost:5001/api/chatgpt/recommendations', {
+    const response = await fetch(`${API_BASE_URL}/api/chatgpt/recommendations`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
