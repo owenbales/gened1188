@@ -17,7 +17,12 @@ requiredEnvVars.forEach(varName => {
 const app = express();
 const port = process.env.PORT || 5001;
 
-app.use(cors());
+// Allow only the GitHub Pages frontend
+const allowedOrigins = ['https://owenbales.github.io'];
+app.use(cors({
+  origin: allowedOrigins,
+  credentials: true // if you ever need cookies/auth
+}));
 app.use(express.json());
 
 // Search endpoint
