@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { createBrowserRouter, RouterProvider, Outlet, Link } from 'react-router-dom';
+import { createHashRouter, RouterProvider, Outlet, Link, Navigate, useLocation } from 'react-router-dom';
 import { searchApartments, SearchParams, ApartmentListing } from './services/api';
 import { getChatGPTRecommendations } from './services/chatgptService';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import ErrorBoundary from './components/ErrorBoundary';
+import Login from './pages/Login';
 
 const locations = [
   { value: 'Arlington, VA', label: 'Arlington, VA (HQ2)' },
@@ -473,11 +474,25 @@ const MainContent = () => {
   );
 };
 
+// Auth wrapper
+function RequireAuth({ children }: { children: React.ReactNode }) {
+  const location = useLocation();
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+  if (!isAuthenticated) {
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+  return <>{children}</>;
+}
+
 // Create router
-const router = createBrowserRouter([
+const router = createHashRouter([
+  {
+    path: '/login',
+    element: <Login />,
+  },
   {
     path: '/',
-    element: <Layout />,
+    element: <RequireAuth><Layout /></RequireAuth>,
     errorElement: <ErrorBoundary><div>Something went wrong!</div></ErrorBoundary>,
     children: [
       {
